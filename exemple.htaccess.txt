@@ -1,0 +1,41 @@
+## contrôle du cache navigateur - Expire headers
+<IfModule mod_expires.c>
+	ExpiresActive On
+	ExpiresDefault "access plus 7200 seconds"
+	ExpiresByType img/jpg 			"access plus 1 week"
+	ExpiresByType img/jpeg 			"access plus 1 week"
+	ExpiresByType img/png 			"access plus 1 week"
+	ExpiresByType img/gif 			"access plus 1 week"
+	ExpiresByType img/svg+xml			"access plus 1 week"
+	AddType img/x-icon .ico
+	ExpiresByType img/ico 			"access plus 1 week"
+	ExpiresByType img/icon 			"access plus 1 week"
+	ExpiresByType img/x-icon 			"access plus 1 week"
+	ExpiresByType css/css 				"access plus 1 week"
+	ExpiresByType js/javascript 		"access plus 1 week"
+	ExpiresByType html 			"access plus 7200 seconds"
+	ExpiresByType application/xhtml+xml 	"access plus 7200 seconds"
+	ExpiresByType application/javascript 	"access plus 1 week"
+	ExpiresByType application/x-javascript 	"access plus 1 week"
+	ExpiresByType application/x-shockwave-flash "access plus 1 week"
+</IfModule>
+
+<IfModule mod_headers.c>
+
+<FilesMatch "\\.(ico|jpe?g|png|gif|swf)$">
+Header set Cache-Control "max-age=2592000, public"
+</FilesMatch>
+
+<FilesMatch "\\.(css)$">
+Header set Cache-Control "max-age=604800, public"
+</FilesMatch>
+
+<FilesMatch "\\.(js)$">
+Header set Cache-Control "max-age=216000, private"
+</FilesMatch>
+
+<FilesMatch "\\.(x?html?|php)$">
+Header set Cache-Control "max-age=600, private, must-revalidate"
+</FilesMatch>
+
+</IfModule>
