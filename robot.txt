@@ -1,4 +1,3 @@
-###
-# robots.txt file created at http://www.yellowpipe.com
-# For domain: 
-###
+User-agent: *
+Allow: /
+
